@@ -29,12 +29,17 @@ function love.load()
     love.graphics.setFont(gFonts['small'])
 
     --Initialize Graphics Assets
-        gTextures = {
+    gTextures = {
         ['background'] = love.graphics.newImage('graphics/background.png'),
-        --['main'] = love.graphics.newImage('graphics/....png'),
+        ['main'] = love.graphics.newImage('graphics/breakout.png'),
         --['arrows'] = love.graphics.newImage('graphics/....png'),
         --['hearts'] = love.graphics.newImage('graphics/....png'),
         --['particle'] = love.graphics.newImage('graphics/....png')
+    }
+
+    --Generate quad from main image
+    gFrames = {
+        ['paddles'] = GenerateQuadsPaddles(gTextures['main'])
     }
 
     --Set game window
@@ -66,7 +71,8 @@ function love.load()
 
     --Initialize state machine
     gStateMachine = StateMachine {
-        ['start'] = function() return StartState() end
+        ['start'] = function() return StartState() end,
+        ['play'] = function() return PlayState() end
     }
     gStateMachine:change('start')
 
