@@ -24,3 +24,4 @@ require 'src/states/PlayState'
 
 -- Object class
 require 'src/Paddle'
+require 'src/Ball'

@@ -33,10 +33,10 @@ end
 
 -- Generate paddle sprite from sprite sheet
 function GenerateQuadsPaddles(atlas)
-    local x = 0
-    local y = 384
     local width = atlas:getWidth()
     local height = atlas:getHeight()
+    local x = 0
+    local y = 384
 
     local counter = 1
     local quads = {}
@@ -59,6 +59,29 @@ function GenerateQuadsPaddles(atlas)
         counter = counter + 1
 
         x = 0
+        y = y + 16
+    end
+
+    return quads
+end
+
+-- Generate paddle sprite from sprite sheet
+function GenerateQuadsBalls(atlas)
+    local width = atlas:getWidth()
+    local height = atlas:getHeight()
+    local x = 384
+    local y = 384
+
+    local counter = 1
+    local quads = {}
+
+    for j = 0, 4 do
+        for i = 0, 1 do
+           quads[counter] = love.graphics.newQuad(x, y, 16, 16, width, height)
+           x = x + 16
+           counter = counter + 1
+        end
+        x = 384
         y = y + 16
     end
 

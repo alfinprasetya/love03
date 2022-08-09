@@ -39,7 +39,8 @@ function love.load()
 
     --Generate quad from main image
     gFrames = {
-        ['paddles'] = GenerateQuadsPaddles(gTextures['main'])
+        ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
+        ['balls'] =  GenerateQuadsBalls(gTextures['main'])
     }
 
     --Set game window
