@@ -1,5 +1,5 @@
 
-StartState = class{__includes = BaseState}
+StartState = Class{__includes = BaseState}
 
 local highlighted = 1
 
@@ -13,7 +13,12 @@ function StartState:update(dt)
         gSounds['confirm']:play()
 
         if highlighted == 1 then
-            gStateMachine:change('play')
+            gStateMachine:change('serve', {
+                paddle = Paddle(),
+                bricks = LevelMaker.createMap(),
+                health = 3,
+                score = 0
+            })
         end
     end
     
@@ -27,8 +32,6 @@ function StartState:render()
     love.graphics.setFont(gFonts['large'])
     love.graphics.printf("BREAKOUT", 0, VIRTUAL_HEIGHT/3, VIRTUAL_WIDTH, 'center')
 
-    -- Instruction
-    -- 
     love.graphics.setFont(gFonts['medium'])
 
     if highlighted == 1 then

@@ -1,18 +1,17 @@
 
-PlayState = class{__includes = BaseState}
+PlayState = Class{__includes = BaseState}
 
-function PlayState:init()
+function PlayState:enter(params)
+    self.paddle = params.paddle
+    self.bricks = params.bricks
+    self.health = params.health
+    self.score = params.score
+    self.ball = params.ball
+
     self.paused = false
 
-    self.paddle = Paddle()
-    self.ball = Ball()
-    self.bricks = LevelMaker.createMap()
-
     self.ball.dx = math.random(-50, 50)
-    self.ball.dy = -60
-
-    self.ball.x = VIRTUAL_WIDTH / 2 - 4
-    self.ball.y = VIRTUAL_HEIGHT - 50
+    self.ball.dy = -70
 end
 
 function PlayState:update(dt)
@@ -70,6 +69,25 @@ function PlayState:update(dt)
             self.ball.y = self.ball.y * 1.05
 
             brick:hit()
+            self.score = self.score + 10
+        end
+    end
+
+    if self.ball.y >= VIRTUAL_HEIGHT then
+        self.health = self.health - 1
+        gSounds['hurt']:play()
+
+        if self.health == 0 then
+            gStateMachine:change('game-over', {
+                score = self.score
+            })
+        else
+            gStateMachine:change('serve', {
+                paddle = self.paddle,
+                bricks = self.bricks,
+                health = self.health,
+                score = self.score
+            })
         end
     end
 
@@ -86,6 +104,9 @@ function PlayState:render()
             brick:render()
         end
     end
+
+    renderHealth(self.health)
+    renderScore(self.score)
     
     if self.paused then
         love.graphics.setFont(gFonts['large'])

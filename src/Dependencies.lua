@@ -2,12 +2,12 @@
 -- Make game more retro aesthetic
 --
 -- https://github.com/Ulydev/push
-push = require 'lib/push'
+Push = require 'lib/push'
 
 -- Lua Class library
 -- 
 -- https://github.com/vrld/hump/blob/master/class.lua
-class = require 'lib/class'
+Class = require 'lib/class'
 
 -- Global Constants file
 require 'src/constants'
@@ -24,6 +24,8 @@ require 'src/StateMachine'
 require 'src/states/BaseState'
 require 'src/states/StartState'
 require 'src/states/PlayState'
+require 'src/states/ServeState'
+require 'src/states/GameOverState'
 
 -- Object class
 require 'src/Paddle'

@@ -1,5 +1,5 @@
 
-Paddle = class{}
+Paddle = Class{}
 
 function Paddle:init()
     self.x = VIRTUAL_WIDTH / 2 - 32

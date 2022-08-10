@@ -1,5 +1,5 @@
 
-LevelMaker = class{}
+LevelMaker = Class{}
 
 function LevelMaker.createMap(level)
     local bricks = {}
@@ -10,7 +10,7 @@ function LevelMaker.createMap(level)
 
     for y = 1, numRows do
         for x = 1, numCols do
-            b = Brick(
+            local b = Brick(
                 (x-1) 
                 * 34 
                 + 29

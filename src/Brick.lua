@@ -1,5 +1,5 @@
 
-Brick = class{}
+Brick = Class{}
 
 function Brick:init(x, y, color)
     self.color = color

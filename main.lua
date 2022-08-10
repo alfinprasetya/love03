@@ -34,18 +34,19 @@ function love.load()
         ['main'] = love.graphics.newImage('graphics/breakout.png'),
         ['ball'] = love.graphics.newImage('graphics/ball.png'),
         --['arrows'] = love.graphics.newImage('graphics/....png'),
-        --['hearts'] = love.graphics.newImage('graphics/....png'),
+        ['hearts'] = love.graphics.newImage('graphics/heart.png'),
         --['particle'] = love.graphics.newImage('graphics/....png')
     }
 
     --Generate quad from main image
     gFrames = {
         ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
-        ['bricks'] = GenerateQuadsBricks(gTextures['main'])
+        ['bricks'] = GenerateQuadsBricks(gTextures['main']),
+        ['hearts'] = GenerateQuadsHearts(gTextures['hearts'])
     }
 
     --Set game window
-    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT,
+    Push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT,
         {
             fullscreen = false,
             resizable = false,
@@ -74,7 +75,9 @@ function love.load()
     --Initialize state machine
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
-        ['play'] = function() return PlayState() end
+        ['serve'] = function() return ServeState() end,
+        ['play'] = function() return PlayState() end,
+        ['game-over'] = function () return GameOverState() end
     }
     gStateMachine:change('start')
 
@@ -83,7 +86,7 @@ function love.load()
 end
 
 function love.resize(w, h)
-    push:resize(w, h)
+    Push:resize(w, h)
 end
 
 --Update function
@@ -110,7 +113,7 @@ function love.keyboard.wasPressed(key)
 end
 
 function love.draw()
-    push:apply('start')
+    Push:apply('start')
 
     local backgroundWidth = gTextures['background']:getWidth()
     local backgroundHeight = gTextures['background']:getHeight()
@@ -134,11 +137,31 @@ function love.draw()
 
     displayFPS()
 
-    push:apply('end')
+    Push:apply('end')
 end
 
 function displayFPS()
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(0, 255, 0, 255)
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
+end
+
+function renderHealth(health)
+    local healthX = VIRTUAL_WIDTH - 100
+
+    for i = 1, health do
+        love.graphics.draw(gTextures['hearts'], gFrames['hearts'][1], healthX, 5)
+        healthX = healthX + 13
+    end
+
+    for i = 1, 3 - health do
+        love.graphics.draw(gTextures['hearts'], gFrames['hearts'][2], healthX, 5)
+        healthX = healthX + 13
+    end
+end
+
+function renderScore(score)
+    love.graphics.setFont(gFonts['small'])
+    love.graphics.print('Score: ', VIRTUAL_WIDTH - 60, 5)
+    love.graphics.printf(tostring(score), VIRTUAL_WIDTH - 50, 5, 40, "right")
 end

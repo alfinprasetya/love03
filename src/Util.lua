@@ -11,7 +11,7 @@ function GenerateQuads(atlas, tilewidth, tileheight)
         for x = 0, sheetWidth - 1 do
             spritesheet[sheetCounter] = 
                 love.graphics.newQuad(
-                    x * tilewidth, y * tileheight, tilewidth, tileheight, sheetWidth, sheetHeight
+                    x * tilewidth, y * tileheight, tilewidth, tileheight, atlas:getWidth(), atlas:getHeight()
                 )
             sheetCounter = sheetCounter + 1
         end
@@ -88,27 +88,7 @@ function GenerateQuadsBricks(atlas)
     return quads
 end
 
--- Generate ball sprite from sprite sheet
---[[
-    function GenerateQuadsBalls(atlas)
-    local width = atlas:getWidth()
-    local height = atlas:getHeight()
-    local x = 384
-    local y = 384
-
-    local counter = 1
-    local quads = {}
-
-    for j = 0, 4 do
-        for i = 0, 1 do
-           quads[counter] = love.graphics.newQuad(x, y, 16, 16, width, height)
-           x = x + 16
-           counter = counter + 1
-        end
-        x = 384
-        y = y + 16
-    end
-
-    return quads
+-- Generate heart sprite from sprite sheet
+function GenerateQuadsHearts(atlas)
+    return GenerateQuads(atlas, 9, 8)
 end
-]]
