@@ -12,9 +12,13 @@ function Paddle:init()
 
     self.skin = 1
     self.size = 3
+
+    self.center = self.x + self.width / 2
 end
 
 function Paddle:update(dt)
+    self.center = self.x + self.width / 2
+
     if love.keyboard.isDown("left") then
         self.dx = -PADDLE_SPEED
     elseif love.keyboard.isDown("right") then

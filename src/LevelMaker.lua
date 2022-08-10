@@ -5,7 +5,7 @@ function LevelMaker.createMap(level)
     local bricks = {}
 
     local numRows = math.random(2, 5)
-    local numCols = math.random(7, 12)
+    local numCols = math.random(7, 11)
     local color = math.random(10)
 
     for y = 1, numRows do
@@ -13,9 +13,9 @@ function LevelMaker.createMap(level)
             b = Brick(
                 (x-1) 
                 * 34 
-                + 12
-                + (12 - numCols) * 17,
-                y * 17,
+                + 29
+                + (11 - numCols) * 17,
+                y * 17 + 8,
                 color
             )
 
