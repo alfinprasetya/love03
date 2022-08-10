@@ -15,6 +15,9 @@ require 'src/constants'
 -- Utility function to handle sprite sheet
 require 'src/Util'
 
+-- Level Maker
+require 'src/LevelMaker'
+
 -- State Machine
 require 'src/StateMachine'
 
@@ -25,3 +28,4 @@ require 'src/states/PlayState'
 -- Object class
 require 'src/Paddle'
 require 'src/Ball'
+require 'src/Brick'

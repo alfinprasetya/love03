@@ -1,16 +1,14 @@
 
 Ball = class{}
 
-function Ball:init(skin)
+function Ball:init()
     self.x = 0
     self.y = 0
-    self.width = 16
-    self.height = 16
+    self.width = 8
+    self.height = 8
 
     self.dx = 0
     self.dy = 0
-
-    self.skin = skin
 end
 
 function Ball:collides(target)
@@ -26,7 +24,7 @@ function Ball:collides(target)
 end
 
 function Ball:reset()
-    self.ball.x = VIRTUAL_WIDTH / 2 - 8
+    self.ball.x = (VIRTUAL_WIDTH - self.width) / 2
     self.ball.y = VIRTUAL_HEIGHT - 50
     self.dx = 0
     self.dy = 0
@@ -56,5 +54,5 @@ function Ball:update(dt)
 end
 
 function Ball:render()
-    love.graphics.draw(gTextures['main'], gFrames['balls'][self.skin], self.x, self.y)
+    love.graphics.draw(gTextures['ball'], self.x, self.y)
 end

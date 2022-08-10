@@ -32,6 +32,7 @@ function love.load()
     gTextures = {
         ['background'] = love.graphics.newImage('graphics/background.png'),
         ['main'] = love.graphics.newImage('graphics/breakout.png'),
+        ['ball'] = love.graphics.newImage('graphics/ball.png'),
         --['arrows'] = love.graphics.newImage('graphics/....png'),
         --['hearts'] = love.graphics.newImage('graphics/....png'),
         --['particle'] = love.graphics.newImage('graphics/....png')
@@ -40,7 +41,7 @@ function love.load()
     --Generate quad from main image
     gFrames = {
         ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
-        ['balls'] =  GenerateQuadsBalls(gTextures['main'])
+        ['bricks'] = GenerateQuadsBricks(gTextures['main'])
     }
 
     --Set game window
