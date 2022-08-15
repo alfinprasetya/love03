@@ -15,7 +15,7 @@ function StartState:update(dt)
         if highlighted == 1 then
             gStateMachine:change('serve', {
                 paddle = Paddle(),
-                bricks = LevelMaker.createMap(),
+                bricks = LevelMaker.createMap(0),
                 health = 3,
                 score = 0
             })

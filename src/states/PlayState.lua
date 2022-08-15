@@ -36,10 +36,10 @@ function PlayState:update(dt)
         self.ball.dy = -self.ball.dy
 
         if self.ball.x < self.paddle.center and self.paddle.dx < 0 then
-            self.ball.dx = -50 + -(2 * (self.paddle.center - self.ball.x))
+            self.ball.dx = -50 + -(5 * (self.paddle.center - self.ball.x))
 
         elseif self.ball.x > self.paddle.center and self.paddle.dx > 0 then
-            self.ball.dx = 50 + (2 * math.abs(self.paddle.center - self.ball.x))
+            self.ball.dx = 50 + (5 * math.abs(self.paddle.center - self.ball.x))
 
         end
 

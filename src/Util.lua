@@ -75,13 +75,27 @@ function GenerateQuadsBricks(atlas)
     local counter = 1
     local quads = {}
 
-    for j = 0, 9 do
-        for i = 0, 5 do
-            quads[counter] = love.graphics.newQuad(x, y, 32, 16, width, height)
-            x = x + 32
-            counter = counter + 1
-        end
-        x = 0
+    for i = 0, 9 do
+        quads[counter] = love.graphics.newQuad(x, y, 32, 16, width, height)
+        counter = counter + 1
+        y = y + 16
+    end
+
+    x = 0
+    y = 192
+
+    for i = 0, 9 do
+        quads[counter] = love.graphics.newQuad(x, y, 32, 16, width, height)
+        counter = counter + 1
+        y = y + 16
+    end
+
+    x = 128
+    y = 192
+
+    for i = 0, 9 do
+        quads[counter] = love.graphics.newQuad(x, y, 32, 16, width, height)
+        counter = counter + 1
         y = y + 16
     end
 
