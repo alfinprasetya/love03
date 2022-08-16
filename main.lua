@@ -35,7 +35,7 @@ function love.load()
         ['ball'] = love.graphics.newImage('graphics/ball.png'),
         --['arrows'] = love.graphics.newImage('graphics/....png'),
         ['hearts'] = love.graphics.newImage('graphics/heart.png'),
-        --['particle'] = love.graphics.newImage('graphics/....png')
+        ['particle'] = love.graphics.newImage('graphics/particle.png')
     }
 
     --Generate quad from main image
