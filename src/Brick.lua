@@ -14,9 +14,17 @@ function Brick:init(x, y)
 end
 
 function Brick:hit()
+    if self.tier > 0 then
+        self.tier = self.tier - 1
+    else
+        self.inPlay = false
+    end
+
     gSounds['brick-hit-2']:play()
 
-    self.inPlay = false
+    if not self.inPlay then
+        gSounds['brick-hit-1']:play()
+    end
 end
 
 function Brick:render()

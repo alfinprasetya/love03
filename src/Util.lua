@@ -69,7 +69,7 @@ end
 function GenerateQuadsBricks(atlas)
     local width = atlas:getWidth()
     local height = atlas:getHeight()
-    local x = 0
+    local x = 32
     local y = 0
 
     local counter = 1

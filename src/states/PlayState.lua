@@ -48,6 +48,7 @@ function PlayState:update(dt)
 
     for k, brick in pairs(self.bricks) do
         if brick.inPlay and self.ball:collides(brick) then
+            self.score = self.score + (brick.tier * 20) + 10
 
             if self.ball.x + 2 < brick.x and self.ball.dx > 0 then
                 self.ball.dx = -self.ball.dx
@@ -69,7 +70,6 @@ function PlayState:update(dt)
             self.ball.y = self.ball.y * 1.05
 
             brick:hit()
-            self.score = self.score + 10
         end
     end
 
